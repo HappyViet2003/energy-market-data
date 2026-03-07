@@ -1,4 +1,4 @@
-class data_aquisition:
+class DataAquisition:
     def __init__(self):
         pass
 

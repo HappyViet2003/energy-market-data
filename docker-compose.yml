@@ -5,4 +5,4 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - ./configuration/example/config.yaml:/app/config.yaml
+      - ./Configuration/example/config.yaml:/app/config.yaml

@@ -1,10 +1,9 @@
 from threading import Event
-from configuration.configuration import configuration
+from Configuration.Configuration import Configuration
 
 print("Dienst läuft...")
 
 # Configuration laden in Objekt
-config = configuration()
-config.load_config()
+config = Configuration()
 
 Event().wait()

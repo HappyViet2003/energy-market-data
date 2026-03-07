@@ -1,9 +1,11 @@
 import yaml
 import os
 
-class configuration:
+class Configuration:
     def __init__(self):
         self.url = None
+
+        self.load_config()
 
     def load_config(self):
         print("Konfiguration wird geladen...")
@@ -11,7 +13,7 @@ class configuration:
         # Pfad-Check für Docker vs lokal
         config_path = "/app/config.yaml"
         if not os.path.exists(config_path):
-            config_path = "configuration/example/config.yaml"
+            config_path = "Configuration/example/config.yaml"
 
         try:
             with open(config_path, "r") as file:
