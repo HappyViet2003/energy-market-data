@@ -1,0 +1,6 @@
+services:
+  energy-market-data:
+    build: .
+    container_name: energy-market-data
+    restart: unless-stopped
+    tty: true
