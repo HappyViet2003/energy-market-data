@@ -12,7 +12,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Den Quellcode kopieren
-COPY main.py .
+COPY . .
 
 # Befehl zum Ausführen der Anwendung
 CMD ["python", "main.py"]

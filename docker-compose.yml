@@ -4,3 +4,5 @@ services:
     container_name: energy-market-data
     restart: unless-stopped
     tty: true
+    volumes:
+      - ./configuration/example/config.yaml:/app/config.yaml
