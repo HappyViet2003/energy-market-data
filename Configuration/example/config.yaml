@@ -1,1 +1,4 @@
-url: "https://www.smard.de/app/chart_data/4169/DE/index_quarterhour.json"
+url: "https://www.smard.de/app/chart_data/"
+filter: 4169
+region: "DE"
+resolution: "quarterhour"
