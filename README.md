@@ -17,6 +17,10 @@ Zeitreihen-URL: https://www.smard.de/app/chart_data/{filter}/{region}/{filter}_{
 
 Anfrage gibt Zeitreihendaten nach Filter, Region und zeitlicher Auflösung ab dem spezifizierten Timestamp aus.
 
+### Beispiel Datensatz in InfluxDB
+![Energy Market Dashboard](./images/example.png)
+
+
 ## Configuration 
 
 ### Parameter: filter
