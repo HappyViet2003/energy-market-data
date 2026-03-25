@@ -105,3 +105,4 @@ class DatabaseService:
     def close(self):
         if self.client:
             self.client.close()
+            print("Datenbankverbindung geschlossen.")

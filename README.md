@@ -72,3 +72,21 @@ Zeitliche Auflösung der Daten:
     'month' - Monatlich
     'year' - Jährlich
 
+## ENV
+
+Zum Start wird eine `.env` benötigt im Projektverzeichnis. Hier ein Beispiel:
+```env
+INFLUXDB_URL=http://influxdb:8086
+INFLUXDB_TOKEN=mein-super-token
+INFLUXDB_ORG=meine-org
+INFLUXDB_BUCKET=mein-bucket
+
+# Nur für den InfluxDB-Container beim ersten Start nötig
+DOCKER_INFLUXDB_INIT_MODE=setup
+DOCKER_INFLUXDB_INIT_USERNAME=admin
+DOCKER_INFLUXDB_INIT_PASSWORD=adminpassword
+DOCKER_INFLUXDB_INIT_ORG=meine-org
+DOCKER_INFLUXDB_INIT_BUCKET=mein-bucket
+DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=mein-super-token
+```
+
