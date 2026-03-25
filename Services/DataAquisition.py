@@ -1,10 +1,12 @@
 import requests
 from Configuration.Configuration import Configuration
+from Services.DatabaseService import DatabaseService
 
 
 class DataAquisition:
-    def __init__(self, config: Configuration):
+    def __init__(self, config: Configuration, dbService: DatabaseService):
         self.config = config
+        self.dbService = dbService
 
         self.acquire_data()
 
@@ -13,6 +15,7 @@ class DataAquisition:
         try:
             # url: "https://www.smard.de/app/chart_data/4169/DE/index_quarterhour.json"
 
+            # Aktuellsten verfügbaren Zeitstempel abrufen
             fullUrl = f"{self.config.url}/{self.config.filter}/{self.config.region}/index_{self.config.resolution}.json"
             print(fullUrl)
 
@@ -22,6 +25,7 @@ class DataAquisition:
             data = response.json()
             print("Daten erfolgreich akquiriert.")
 
+            # Nun echte Daten holen, da der Zeitstempel bekannt ist
             # TODO Weiter bearbeiten
 
             latest_timestamp = data["timestamps"][-1]

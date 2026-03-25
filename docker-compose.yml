@@ -2,7 +2,30 @@ services:
   energy-market-data:
     build: .
     container_name: energy-market-data
+    env_file:
+      - .env
     restart: unless-stopped
     tty: true
+    depends_on:
+      influxdb:
+        condition: service_healthy
     volumes:
       - ./Configuration/example/config.yaml:/app/config.yaml
+
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    env_file:
+      - .env
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    healthcheck:
+      test: ["CMD", "influx", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  influxdb-data:
