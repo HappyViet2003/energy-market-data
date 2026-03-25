@@ -1,5 +1,7 @@
+from datetime import datetime, timezone
 import requests
 from Configuration.Configuration import Configuration
+from Models.StromMesswert import StromMesswert
 from Services.DatabaseService import DatabaseService
 
 
@@ -26,7 +28,6 @@ class DataAquisition:
             print("Daten erfolgreich akquiriert.")
 
             # Nun echte Daten holen, da der Zeitstempel bekannt ist
-            # TODO Weiter bearbeiten
 
             latest_timestamp = data["timestamps"][-1]
 
@@ -39,6 +40,32 @@ class DataAquisition:
             live_response.raise_for_status()
 
             live_data = live_response.json()
+
+            serie = live_data.get("series", [])
+
+            messwerte = []
+
+            for eintrag in serie:
+                timestamp_ms, wert = eintrag
+
+                if wert is None:
+                    continue
+
+                messwerte.append(
+                    StromMesswert(
+                        timestamp=datetime.fromtimestamp(
+                            timestamp_ms / 1000, tz=timezone.utc
+                        ),
+                        filter_id=self.config.filter,
+                        region=self.config.region,
+                        resolution=self.config.resolution,
+                        value=float(wert),
+                    )
+                )
+
+            if messwerte:
+                self.dbService.schreibe_batch(messwerte)
+                print(f"{len(messwerte)} Messwerte gespeichert.")
 
             print("Live Daten erfolgreich akquiriert.")
 
